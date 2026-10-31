@@ -319,13 +319,93 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
 .toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 24px);transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 18px;font-size:.88rem;z-index:60}
 .page{animation:fade .35s ease}
 @keyframes fade{from{opacity:.4}to{opacity:1}}
+
+/* ---------- mobile menu + sticky actions ---------- */
+.menubtn{display:none;position:absolute;left:0;top:50%;transform:translateY(-50%);font:500 .72rem/1 var(--body);letter-spacing:.2em;text-transform:uppercase;background:none;border:1px solid var(--line);color:var(--ink);padding:10px 12px;cursor:pointer}
+.brandrow{position:relative}
+.mbar{display:none}
+@media (max-width:760px){
+  .menubtn{display:block}
+  .tabbar{display:none;overflow:visible}
+  .nav.open .tabbar{display:block}
+  .tabs{flex-direction:column;min-width:0}
+  .tabs li{justify-content:flex-start;border-top:1px solid var(--line)}
+  .tabs li:first-child{border-top:0}
+  .tabs li + li::before{display:none}
+  .tabs a{padding:16px 4px;font-size:.78rem;width:100%}
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 12px calc(env(safe-area-inset-bottom,0px) + 10px);background:var(--bg);border-top:1px solid var(--line)}
+  .mbar .btn{padding:13px 10px;font-size:.86rem}
+  body{padding-bottom:76px}
+  .toast{bottom:calc(env(safe-area-inset-bottom,0px) + 90px)}
+}
+
+/* ---------- trust strip, promise, reviews ---------- */
+.trust{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--line)}
+.trust div{padding:22px 20px 22px 0;display:grid;gap:4px;align-content:start}
+.trust div + div{padding-left:20px;border-left:1px solid var(--line)}
+.trust b{font-weight:600;font-size:.95rem}
+.trust span{font-size:.86rem;color:var(--muted)}
+@media (max-width:860px){.trust{grid-template-columns:1fr 1fr}.trust div:nth-child(3){padding-left:0;border-left:0}.trust div{border-bottom:1px solid var(--line)}}
+@media (max-width:520px){.trust{grid-template-columns:1fr}.trust div + div{padding-left:0;border-left:0}}
+.promise{border:1px solid var(--ink);background:var(--surface);padding:36px;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px;align-items:start}
+.promise ol{margin:0;padding-left:20px;display:grid;gap:12px;color:var(--muted)}
+.promise ol b{color:var(--ink);font-weight:600}
+.promise .small{font-size:.84rem;color:var(--muted);margin-top:14px}
+@media (max-width:860px){.promise{grid-template-columns:1fr;gap:24px;padding:26px}}
+.reviews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.reviews figure{margin:0;border-top:1px solid var(--ink);padding-top:22px;display:grid;gap:14px;align-content:start}
+.reviews img{width:100%;aspect-ratio:4/5;object-fit:cover;border:1px solid var(--line)}
+.reviews blockquote{margin:0;font-family:var(--display);font-size:1.25rem;line-height:1.35}
+.reviews figcaption{font-size:.86rem;color:var(--muted)}
+@media (max-width:860px){.reviews{grid-template-columns:1fr}}
+.suit .sw img{width:100%;height:100%;object-fit:cover;display:block}
+.suit .sw.photo{height:320px}
+
+/* ---------- builder guidance ---------- */
+.looks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:36px}
+.look{border:1px solid var(--line);background:var(--surface);padding:16px;display:grid;gap:6px;text-align:left;cursor:pointer;font:inherit;color:var(--ink)}
+.look:hover,.look[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.look .chips{display:flex;gap:4px;margin-bottom:4px}
+.look .chips span{width:22px;height:14px;border:1px solid var(--line)}
+.look b{font-family:var(--display);font-weight:500;font-size:1.15rem}
+.look small{color:var(--muted);font-size:.82rem;line-height:1.4}
+@media (max-width:860px){.looks{grid-template-columns:1fr 1fr}}
+.looks-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.looks-h span{font-size:.88rem;color:var(--muted)}
+.opts[data-name="lapel"]:not(.showadv) .opt.adv:not(:has(input:checked)){display:none}
+.moreopts{border:1px dashed var(--line);background:transparent;color:var(--ink);font:500 .88rem var(--body);cursor:pointer;padding:12px 16px;min-height:60px}
+.moreopts:hover{border-color:var(--ink)}
+.opt label small.pop{color:var(--gold)}
+
+/* ---------- other ways to measure, next steps, policies ---------- */
+.alt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:36px}
+.alt div{border:1px solid var(--line);background:var(--surface);padding:18px;display:grid;gap:8px;align-content:start}
+.alt b{font-weight:600}
+.alt span{font-size:.88rem;color:var(--muted)}
+.alt a,.alt button{justify-self:start;font-size:.88rem;text-underline-offset:4px;background:none;border:0;padding:0;color:inherit;text-decoration:underline;cursor:pointer;font-family:inherit}
+@media (max-width:760px){.alt{grid-template-columns:1fr}}
+.next{border-top:1px solid var(--line);padding-top:14px}
+.next ol{margin:8px 0 0;padding-left:18px;display:grid;gap:4px;font-size:.86rem;color:var(--muted)}
+.where{border:1px solid var(--ink);padding:18px 20px;display:grid;gap:6px;background:var(--surface)}
+.where b{font-weight:600}
+.where span{color:var(--muted);font-size:.92rem}
+.policy{display:grid;gap:14px;max-width:70ch;padding-block:40px;border-top:1px solid var(--line)}
+.policy h2{font-size:clamp(1.6rem,3vw,2.2rem)}
+.policy p,.policy li{color:var(--muted)}
+.policy ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.swreq{display:grid;gap:18px;border:1px solid var(--line);background:var(--surface);padding:28px;margin-top:40px}
+.swreq .opts .opt label{min-width:140px}
+.founder{display:grid;grid-template-columns:240px minmax(0,1fr);gap:40px;align-items:start;padding-block:56px;border-top:1px solid var(--line);margin-top:56px}
+.founder img{width:100%;aspect-ratio:4/5;object-fit:cover;border:1px solid var(--line)}
+.founder .prose{display:grid;gap:14px;max-width:62ch;color:var(--muted)}
+@media (max-width:760px){.founder{grid-template-columns:1fr}}
 </style>
 
 <header class="nav">
   <div class="wrap">
-    <div class="brandrow"><a class="mark" href="#home">MONTIER</a></div>
+    <div class="brandrow"><button class="menubtn" type="button" id="menubtn" aria-expanded="false" aria-controls="mainnav">Menu</button><a class="mark" href="#home">MONTIER</a></div>
   </div>
-  <nav class="tabbar" aria-label="Main">
+  <nav class="tabbar" aria-label="Main" id="mainnav">
     <ul class="tabs">
       <li><a href="#home" data-nav="home">Home</a></li>
       <li><a href="#suits" data-nav="suits">Suits</a></li>
@@ -352,8 +432,8 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
         </div>
         <div class="facts">
           <div class="fact"><b>From $999</b><span>Two-piece, AUD</span></div>
-          <div class="fact"><b>17</b><span>Measurements taken</span></div>
-          <div class="fact"><b>4–6 wks</b><span>Order to delivery</span></div>
+          <div class="fact"><b>17</b><span>Measurements, all checked</span></div>
+          <div class="fact"><b>4–6 wks</b><span>Measured to delivered</span></div>
         </div>
       </div>
       <figure class="figure">
@@ -363,7 +443,16 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
     </div>
   </div>
 
-  <div class="tape" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="trust" aria-label="Why it's safe to order">
+      <div><b>The Fit Promise</b><span>If it doesn't fit, we fix it or remake it. <a href="#promise">How it works</a></span></div>
+      <div><b>Nothing to pay yet</b><span>You pay only after we've checked your measurements with you.</span></div>
+      <div><b>Free delivery</b><span>Tracked, to any address in Australia.</span></div>
+      <div><b>Your pattern, kept</b><span>Order again any time without measuring.</span></div>
+    </div>
+  </div>
+
+  <div class="tape" aria-hidden="true" style="margin-top:56px"></div>
   <div class="wrap">
     <section aria-labelledby="h-home-proc">
       <div class="sec-head">
@@ -410,11 +499,32 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
     </div>
   </div>
 
+  <div class="wrap" data-reviews-wrap hidden>
+    <section aria-labelledby="h-home-rev">
+      <div class="sec-head"><div><p class="eyebrow">Customers</p><h2 id="h-home-rev" style="margin-top:14px">Worn by the men we measured.</h2></div>
+        <p class="lede">Real customers, in their own suits, in their own words.</p></div>
+      <div class="reviews" id="review-list"></div>
+    </section>
+  </div>
+
+  <div class="wrap">
+    <section id="promise" aria-labelledby="h-promise">
+      <div class="promise">
+        <div><p class="eyebrow">The Fit Promise</p><h2 id="h-promise" style="margin-top:14px">If it doesn't fit, it isn't finished.</h2>
+          <p class="lede" style="margin-top:18px">Buying a made-to-measure suit online should feel as safe as walking into a shop.</p></div>
+        <div>
+          <ol id="promise-list"></ol>
+          <p class="small">Full terms in our <a href="#policies">customer policies</a>. Your rights under Australian Consumer Law always apply.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
   <div class="wrap">
     <section aria-labelledby="h-home-fab">
       <div class="sec-head">
         <div><p class="eyebrow">Fabrics</p><h2 id="h-home-fab" style="margin-top:14px">Five materials. Eight colours.</h2></div>
-        <p class="lede">From breathable linen to Italian cashmere. Feel them in person at your fitting.</p>
+        <p class="lede">From breathable linen to Italian cashmere. Feel them at a fitting, or we'll post you free swatches.</p>
       </div>
       <a class="stripstrip" href="#fabrics" aria-label="See all fabrics" data-strip></a>
       <a class="morelink" href="#fabrics">Explore fabrics →</a>
@@ -441,6 +551,8 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
         <div><p class="eyebrow">Build your suit</p><h2 id="build-h" style="margin-top:14px">Choose every detail.</h2></div>
         <p class="lede">Your choices are saved on this device. When you're happy, send them with your measurements or ask us a question.</p>
       </div>
+      <div class="looks-h"><p class="eyebrow">Start from a look</p><span>Not sure where to begin? Pick one, then change anything.</span></div>
+      <div class="looks" id="looks"></div>
       <div class="cfg">
         <form id="cfg" onsubmit="return false">
           <div class="group"><div class="gl"><b>Suit</b><span>The base garment</span></div><div class="opts" data-name="type"></div></div>
@@ -448,7 +560,7 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
           <div class="group"><div class="gl"><b>Cloth colour</b><span>Available in every material</span></div><div class="swatches" data-name="cloth"></div></div>
           <div class="group" id="grade-group"><div class="gl"><b>Wool quality</b><span>Weight and handle</span></div><div class="opts" data-name="grade"></div></div>
           <div class="group"><div class="gl"><b>Fit</b><span>How close it sits</span></div><div class="opts" data-name="fit"></div></div>
-          <div class="group"><div class="gl"><b>Lapel style</b><span>The lapels are the folded parts of cloth at the front of the jacket. Their shape and width change the whole look of the suit.</span></div><div class="opts" data-name="lapel"></div></div>
+          <div class="group"><div class="gl"><b>Lapel style</b><span>The folded cloth at the front of the jacket. Notch suits almost everything. Peak is sharper and more formal. Shawl is for evening.</span></div><div class="opts" data-name="lapel"></div></div>
           <div class="group"><div class="gl"><b>Lapel buttonhole</b><span>On the left lapel</span></div><div class="opts" data-name="hole"></div></div>
           <div class="group"><div class="gl"><b>Front</b><span>Buttoning</span></div><div class="opts" data-name="front"></div></div>
           <div class="group"><div class="gl"><b>Jacket pockets</b></div><div class="opts" data-name="pockets"></div></div>
@@ -456,8 +568,8 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
           <div class="group"><div class="gl"><b>Back vents</b></div><div class="opts" data-name="vents"></div></div>
           <div class="group" data-trousers><div class="gl"><b>Trousers</b></div><div class="opts" data-name="trouser"></div></div>
           <div class="group" data-trousers><div class="gl"><b>Waistband</b></div><div class="opts" data-name="waist"></div></div>
-          <div class="group" id="no-jacket" hidden><div class="gl"><b>Jacket</b></div><p style="color:var(--muted);max-width:52ch;font-family:var(--display);font-style:italic;font-size:1.1rem">Not included with The Offline Trouser. Above the camera line, you're on your own.</p></div>
-          <div class="group" id="no-trousers" hidden><div class="gl"><b>Trousers</b></div><p style="color:var(--muted);max-width:52ch;font-family:var(--display);font-style:italic;font-size:1.1rem">Not included with The Jacket. What happens below the camera is between you and your desk.</p></div>
+          <div class="group" id="no-jacket" hidden><div class="gl"><b>Jacket</b></div><p style="color:var(--muted);max-width:52ch">Not included with The Offline Trouser. Your measurements are kept, so you can add a matching jacket later.</p></div>
+          <div class="group" id="no-trousers" hidden><div class="gl"><b>Trousers</b></div><p style="color:var(--muted);max-width:52ch">Not included with The Jacket. Your measurements are kept, so you can add matching trousers later.</p></div>
           <div class="group"><div class="gl"><b>Lining</b></div><div class="swatches lin" data-name="lining"></div></div>
           <div class="group"><div class="gl"><b>Monogram</b><span>Inside pocket, up to 3 letters. Included.</span></div>
             <div><input class="txt" id="mono" maxlength="3" placeholder="ABC" aria-label="Monogram initials" autocomplete="off"></div></div>
@@ -471,7 +583,7 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
             <a class="btn solid" href="#measure">Continue to measurements</a>
             <button class="btn" type="button" id="ask-suit">Ask about this suit</button>
           </div>
-          <p class="note">Illustrations show style, not exact cloth colour. Includes tailoring and delivery within Australia. You pay nothing until we've confirmed your measurements.</p>
+          <p class="note">Includes tailoring and free delivery within Australia. You pay nothing until we've confirmed your measurements, and every suit is covered by <a href="#promise">the Fit Promise</a>. Illustrations show style, not exact cloth colour.</p>
         </aside>
       </div>
     </section>
@@ -499,8 +611,19 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
   <div class="wrap">
     <section id="cloths" aria-labelledby="h-cloths">
       <div class="sec-head"><div><p class="eyebrow">Cloth colours</p><h2 id="h-cloths" style="margin-top:14px">Eight suitings.</h2></div>
-        <p class="lede">Available across the materials. Colours on screen are close but not exact, so ask to see real swatches at your fitting.</p></div>
+        <p class="lede">Available across the materials. Colours on screen are close but not exact, so feel the real cloth first. <a href="#swatches">Order free swatches</a>.</p></div>
       <div class="cloths" id="cloth-grid"></div>
+      <form class="swreq" id="swatches" novalidate>
+        <div><p class="eyebrow">Free swatches by post</p><h3 style="margin-top:8px">Feel the cloth before you choose.</h3>
+          <p style="color:var(--muted);margin-top:8px;max-width:60ch">Pick up to four colours and we'll post the cloth to you, free, anywhere in Australia.</p></div>
+        <div class="opts" id="sw-pick"></div>
+        <div class="fields" style="margin-top:0">
+          <div class="f"><label for="sw-name">Full name</label><input id="sw-name" autocomplete="name" required></div>
+          <div class="f"><label for="sw-email">Email</label><input id="sw-email" type="email" autocomplete="email" required></div>
+          <div class="f wide"><label for="sw-addr">Postal address</label><textarea id="sw-addr" rows="2" autocomplete="street-address" required></textarea></div>
+        </div>
+        <div class="formfoot"><button class="btn solid" type="submit">Request swatches</button><span class="note" id="sw-count">Choose up to 4.</span></div>
+      </form>
     </section>
   </div>
   <div class="tape" aria-hidden="true"></div>
@@ -530,7 +653,7 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
       <div class="sec-head"><div><p class="eyebrow">Linings</p><h2 id="h-lin" style="margin-top:14px">The colour only you see.</h2></div>
         <p class="lede">A smooth lining helps the jacket slide on and off. All five colours are included.</p></div>
       <div class="linings" id="lining-grid"></div>
-      <div class="ctas"><a class="btn solid" href="#build">Choose your cloth</a><a class="btn" href="#book">See swatches at a fitting</a></div>
+      <div class="ctas"><a class="btn solid" href="#build">Choose your cloth</a><a class="btn" href="#swatches">Order free swatches</a></div>
     </section>
   </div>
 </div>
@@ -550,8 +673,8 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
     <section id="party" aria-labelledby="h-party">
       <div class="sec-head"><div><p class="eyebrow">The wedding party</p><h2 id="h-party" style="margin-top:14px">Who we dress.</h2></div></div>
       <div class="party">
-        <article><span class="tag">FROM $1,149</span><h3>The groom</h3><p>A three-piece in Super 130s fine wool, with your initials and a lining in your wedding colours.</p></article>
-        <article><span class="tag">FROM $999 EACH</span><h3>The groomsmen</h3><p>Matching cloth and details across the party. Each man is measured separately, at a fitting or at home. Ask about pricing for groups.</p></article>
+        <article><span class="tag">FROM $1,249</span><h3>The groom</h3><p>A three-piece in Super 130s fine wool, with your initials and a lining in your wedding colours.</p></article>
+        <article><span class="tag">FROM $999 EACH</span><h3>The groomsmen</h3><p>Matching cloth and details across the party. Each man is measured separately, at a fitting, on a video call or at home, wherever he lives in Australia. <span id="group-offer">Ask about pricing for groups.</span></p></article>
         <article><span class="tag">FROM $999</span><h3>Fathers and family</h3><p>A coordinated suit in a complementary cloth, so the family photos look considered.</p></article>
       </div>
     </section>
@@ -595,6 +718,11 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
         <div><p class="eyebrow">Send your measurements</p><h2 id="measure-h" style="margin-top:14px">Measure at home.</h2></div>
         <p class="lede">Ask someone to help, wear a fitted shirt, and use a soft tape. Measure twice. If a number looks off, we'll check it with you before anything is cut.</p>
       </div>
+      <div class="alt" aria-label="Other ways to measure">
+        <div><b>Measure with us on video</b><span>A free 20-minute call. We guide you through every number, live.</span><a href="#book" data-ftype="Video call">Book a video call</a></div>
+        <div><b>Send us a suit that fits</b><span>Post us a jacket and trousers you like. We measure them and send them back.</span><button type="button" id="alt-post">Ask how to post it</button></div>
+        <div><b>Ordered before?</b><span>Your pattern is on file. Choose a new suit and skip the tape.</span><button type="button" id="alt-reorder">Reorder with my saved pattern</button></div>
+      </div>
       <div class="formgrid">
         <form id="mform" novalidate>
           <div class="attached"><span>Suit: <b id="m-suit">The Two-Piece</b></span><a href="#build" style="font-size:.84rem">Change</a></div>
@@ -637,7 +765,7 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
             <li><b>Stand naturally.</b> Don't breathe in or stand taller than usual.</li>
             <li><b>Keep the tape flat and level,</b> snug but not pulling.</li>
             <li><b>Wear a fitted shirt</b> and thin trousers. Empty your pockets.</li>
-            <li><b>Take three photos</b> (front, side, back) in a fitted top. We'll ask for them when we reply.</li>
+            <li><b>Take three photos now</b> (front, side, back) in a fitted top, and attach them when you send your measurements. They let us check every number.</li>
             <li><b>Not sure?</b> Book a fitting instead and we'll measure you.</li>
           </ol>
           <a class="btn sm" href="#book">Book a Fitting</a>
@@ -653,8 +781,15 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
         <details><summary>How long does a suit take?</summary><p>About 4–6 weeks from the day we confirm your measurements. If you have a wedding or event date, tell us and we'll plan around it.</p></details>
         <details><summary>What if I measure myself wrong?</summary><p>We check every set of numbers against your height, weight and photos before cutting. If something doesn't add up, we'll contact you first.</p></details>
         <details><summary>What's half-canvas?</summary><p>A layer of canvas sewn into the chest and lapels. It shapes the jacket to you over time and gives the lapel a natural roll, unlike fused jackets that stay flat.</p></details>
-        <details><summary>What if it doesn't fit right?</summary><p>Tell us what feels off and send a few photos. We'll work with you on the adjustments and keep your pattern on file for your next order.</p></details>
-        <details><summary>How do I pay?</summary><p>Once we've confirmed your measurements and details, we'll send an invoice. Nothing is cut until it's paid.</p></details>
+        <details><summary>What if it doesn't fit right?</summary><p>It's covered by the Fit Promise. Tell us within <span data-p="days"></span> days of delivery and send a few photos. We'll pay for alterations with a tailor near you (up to <span data-p="alter"></span>), or remake the piece free if alterations can't fix it. We then update your pattern so your next order is right first time.</p></details>
+        <details><summary>How do I pay?</summary><p>Nothing until we've checked your measurements with you. Then we email an invoice, payable by card or bank transfer, and start cutting once it's paid. You'll get an order number and updates as your suit is cut, sewn and shipped.</p></details>
+        <details><summary>Can I return it if I change my mind?</summary><p>Because every suit is cut for one person, we can't take change-of-mind returns. But if it doesn't fit or there's a fault, the Fit Promise and your rights under Australian Consumer Law cover you.</p></details>
+        <details><summary>How is it delivered?</summary><p>Free tracked delivery to any address in Australia, including regional areas. You'll get the tracking number when it ships.</p></details>
+        <details><summary>I have an event soon. Can you rush it?</summary><p>Often, yes. Tell us your date before you order and we'll say honestly whether we can make it in time.</p></details>
+        <details><summary>What if my weight changes?</summary><p>Suits have room in the seams to be let out or taken in by about 2–3 cm. For bigger changes, send new measurements and we'll update your pattern.</p></details>
+        <details><summary>What happens to my measurements and photos?</summary><p>We use them only to make your clothes. We don't share or sell them, and we'll delete them whenever you ask. See our <a href="#privacy">privacy policy</a>.</p></details>
+        <details><summary>Can I order again without measuring?</summary><p>Yes. Your pattern stays on file. Build a new suit and choose "Reorder with my saved pattern" on the measurements page.</p></details>
+        <details><summary>How do I look after my suit?</summary><p>Hang it on a wide hanger, brush it after wearing, and give it a day's rest between wears. Dry clean only when it's stained or smells, not after every wear.</p></details>
       </div>
     </section>
   </div>
@@ -671,7 +806,7 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
       <div class="prose">
         <p>Most men have never worn a suit made for them. Montier exists to change that.</p>
         <p>Off-the-rack suits are cut for an average body that nobody actually has. The jacket fits the chest but swims at the waist, or the sleeves are right and the shoulders aren't. Made-to-measure fixes all of it, but it has usually meant high prices and weeks of appointments.</p>
-        <p>We work directly with an experienced master tailor. You choose the cloth and details, we take your measurements, and your suit is cut from a pattern drafted only for you. No middlemen, no showroom markup.</p>
+        <p>We work directly with an experienced master tailor<span id="workshop-where"></span>. You choose the cloth and details, we take your measurements, and your suit is cut from a pattern drafted only for you. No middlemen, no showroom markup.</p>
         <p>The result is a half-canvassed suit, sewn by hand, at a price that makes sense.</p>
       </div>
       <div class="values">
@@ -681,9 +816,15 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
         <div><b>Made by hand.</b><span>Half-canvas construction, sewn by an experienced tailor.</span></div>
       </div>
     </div>
+    <div class="founder" id="founder" hidden>
+      <img id="founder-photo" alt="" hidden>
+      <div class="prose"><p class="eyebrow">Who you're dealing with</p><h2 id="founder-name"></h2><div id="founder-story"></div></div>
+    </div>
     <section aria-label="How your suit reaches you" style="padding-block:72px 88px">
       <div class="map">
         <div class="pt"><span>MEASURED</span><b>For you</b></div>
+        <div class="line" aria-hidden="true" data-made-line hidden></div>
+        <div class="pt" data-made hidden><span>MADE BY HAND</span><b id="made-where"></b></div>
         <div class="line" aria-hidden="true"></div>
         <div class="pt"><span>DELIVERED</span><b>Australia-wide</b></div>
       </div>
@@ -700,7 +841,7 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
           <p class="eyebrow">Book a Fitting</p>
           <h1 id="fit-h">Let us take the tape.</h1>
           <p class="lede">We take every measurement, show you cloth samples in person, and talk through how you'll wear the suit.</p>
-          <p class="lede">Can't meet in person? Book a video call and we'll guide you through measuring yourself.</p>
+          <div class="where"><b id="where-person"></b><span>Anywhere else in Australia: a free video call. We guide you through every measurement live and hold cloth up to the camera.</span></div>
           <dl>
             <dt>In person</dt><dd>About 45 minutes</dd>
             <dt>Video call</dt><dd>About 30 minutes</dd>
@@ -745,12 +886,52 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
   </div>
 </div>
 
+<!-- ======================= POLICIES ======================= -->
+<div class="page" data-page="policies" id="policies" hidden>
+  <div class="wrap">
+    <header class="pagehead">
+      <p class="eyebrow">Customer policies</p>
+      <h1>The fine print, in plain English.</h1>
+      <p class="lede">What you can expect from us, and what we need from you.</p>
+    </header>
+    <section class="policy" aria-labelledby="pol-fit">
+      <h2 id="pol-fit">The Fit Promise</h2>
+      <ol id="promise-list-2" style="margin:0;padding-left:20px;display:grid;gap:8px;color:var(--muted)"></ol>
+    </section>
+    <section class="policy" aria-labelledby="pol-ret">
+      <h2 id="pol-ret">Returns and refunds</h2>
+      <p>Every Montier garment is cut from a pattern made for one person, so we can't accept change-of-mind returns once cutting has started. Before then, you can cancel for a full refund.</p>
+      <p>If your order arrives faulty, not as described, or doesn't fit, it's covered by the Fit Promise above. Nothing in this policy limits your rights under the Australian Consumer Law.</p>
+    </section>
+    <section class="policy" aria-labelledby="pol-pay">
+      <h2 id="pol-pay">Ordering, payment and delivery</h2>
+      <ul>
+        <li>You pay nothing until we've checked your measurements with you.</li>
+        <li>We then email an invoice, payable by card or bank transfer. Cutting starts once it's paid.</li>
+        <li>Your suit arrives in about 4–6 weeks from confirmed measurements. Tell us your event date and we'll plan around it.</li>
+        <li>Delivery is free and tracked to any address in Australia.</li>
+      </ul>
+    </section>
+    <section class="policy" id="privacy" aria-labelledby="pol-priv">
+      <h2 id="pol-priv">Privacy</h2>
+      <p>We collect your name, contact details, measurements and any photos you send, and use them only to make, deliver and support your order. We keep your pattern on file so you can reorder. We don't sell or share your details with anyone except the tailor making your suit and the courier delivering it.</p>
+      <p>Ask us at any time to see, correct or delete what we hold about you.</p>
+    </section>
+    <section class="policy" id="terms" aria-labelledby="pol-terms">
+      <h2 id="pol-terms">Terms</h2>
+      <p>Prices are in Australian dollars and include GST. Cloth colours on screen are a guide; order free swatches if colour matters. Hand-made garments can vary slightly from the illustrations.</p>
+    </section>
+  </div>
+</div>
+
+<div class="mbar" aria-label="Quick actions"><a class="btn solid" href="#build">Build your suit</a><a class="btn" href="#book">Book a fitting</a></div>
+
 <footer class="wrap">
   <div style="display:grid;gap:10px"><span class="mark" style="font-size:1.1rem;color:var(--ink)">MONTIER</span><span>Made-to-measure suits · Delivered Australia-wide</span></div>
   <nav aria-label="Footer">
     <a href="#home">Home</a><a href="#suits">Suits</a><a href="#fabrics">Fabrics</a><a href="#weddings">Weddings</a><a href="#process">The <span class="spaced">MONTIER</span> Process</a><a href="#about">About</a><a href="#book">Book a Fitting</a>
   </nav>
-  <div class="bottom"><span>© <span id="yr"></span> Montier</span><span>Prices in AUD</span></div>
+  <div class="bottom"><span>© <span id="yr"></span> Montier<span id="abn"></span></span><span><a href="#policies">Fit Promise &amp; returns</a> · <a href="#privacy">Privacy</a> · <a href="#terms">Terms</a> · Prices in AUD, incl. GST</span></div>
 </footer>
 
 <div class="overlay" id="send" hidden role="dialog" aria-modal="true" aria-labelledby="send-h">
@@ -765,6 +946,11 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
       <a class="btn sm" id="send-sms">Text</a>
     </div>
     <p class="note" id="send-to"></p>
+    <div class="next"><p class="eyebrow">What happens next</p><ol>
+      <li>We reply within one business day to confirm we have it.</li>
+      <li>For measurements: we check every number against your photos and call you if anything looks off.</li>
+      <li>Only then do we send an invoice. Nothing is cut until you've approved it.</li>
+    </ol></div>
     <div><button class="btn sm" id="send-close">Close</button></div>
   </div>
 </div>
@@ -775,8 +961,36 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
 const CONTACT = {
   email: "hello@montier.com.au",
   phone: "+61 400 000 000",      // shown for text messages
-  whatsapp: "61400000000"        // international format, digits only
+  whatsapp: "61400000000",       // international format, digits only
+  instagram: "",                 // e.g. "https://instagram.com/montier"
+  abn: ""                        // e.g. "12 345 678 901" — shown in the footer
 };
+
+/* ===== Edit your business details here ===== */
+const BUSINESS = {
+  fittingCity: "",               // e.g. "Sydney". Leave empty to say "selected cities".
+  madeIn: "",                    // e.g. "Phuket, Thailand". Shown on About when filled in.
+  groupOffer: ""                 // e.g. "Book four or more suits and the groom's is 20% off."
+};
+
+/* The Fit Promise. Change the numbers to terms you're comfortable with. */
+const PROMISE = { days: 14, alter: "$150" };
+
+/* Founder. Fill these in to show a face and a story on the About page. */
+const FOUNDER = {
+  name: "",                      // e.g. "Shang, founder"
+  photo: "",                     // image URL or data: URI
+  story: []                      // a few short paragraphs, e.g. ["I started Montier because…", "…"]
+};
+
+/* Real customer reviews. The section stays hidden until at least one is added.
+   Only add genuine reviews, with the customer's permission. */
+const REVIEWS = [
+  // {quote:"…", name:"James", detail:"Navy two-piece, Melbourne", photo:""}
+];
+
+/* Real photos. Add an image URL or data: URI to show a photo on each suit card. */
+const PHOTOS = { two:"", three:"", jacket:"", trousers:"" };
 
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
@@ -822,7 +1036,7 @@ const OPTIONS = {
   ],
   fit: [{v:"Slim"},{v:"Tailored"},{v:"Classic"}],
   lapel: [
-    {v:"Notch", t:"Notch Lapel"}, {v:"Peak", t:"Peak Lapel"}, {v:"Shawl", t:"Shawl Lapel"},
+    {v:"Notch", t:"Notch Lapel", pop:1}, {v:"Peak", t:"Peak Lapel"}, {v:"Shawl", t:"Shawl Lapel"},
     {v:"Wide Peak", t:"Wide Peak Lapel"}, {v:"Wide Notch", t:"Wide Notch"}, {v:"Wide Shawl", t:"Wide Shawl Lapel"},
     {v:"Slim Notch", t:"Slim Notch Lapel"}, {v:"Slim Peak", t:"Slim Peak Lapel"},
     {v:"Wide Curved Peak", t:"Wide, Curved Peak"}, {v:"Bib", t:"Bib Lapel"},
@@ -830,10 +1044,10 @@ const OPTIONS = {
     {v:"Tailor's Choice", s:"WE'LL CHOOSE FOR YOU"}
   ],
   hole: [{v:"None"},{v:"Plain", s:"MATCHING THREAD"},{v:"Milanese", s:"RAISED, CONTRAST"}],
-  front: [{v:"One Button"},{v:"Two Button"},{v:"Two Button with Rollover"},{v:"Three Button"},{v:"Double Breasted (6 button)"},{v:"Double Breasted (4 button)"}],
-  pockets: [{v:"Flap Pockets"},{v:"Patch Pockets"},{v:"Jetted Pockets"},{v:"Tailor's Choice", s:"WE'LL CHOOSE FOR YOU"}],
+  front: [{v:"One Button"},{v:"Two Button", pop:1},{v:"Two Button with Rollover"},{v:"Three Button"},{v:"Double Breasted (6 button)"},{v:"Double Breasted (4 button)"}],
+  pockets: [{v:"Flap Pockets", pop:1},{v:"Patch Pockets"},{v:"Jetted Pockets"},{v:"Tailor's Choice", s:"WE'LL CHOOSE FOR YOU"}],
   chest: [{v:"Standard"},{v:"Patch"},{v:"Patch With Flap"}],
-  vents: [{v:"Double"},{v:"Single"},{v:"None"}],
+  vents: [{v:"Double", pop:1},{v:"Single"},{v:"None"}],
   trouser: [{v:"Flat front"},{v:"Single pleat"},{v:"Double pleat"}],
   waist: [{v:"Belt loops"},{v:"Side adjusters"}],
   lining: [{v:"Navy", c:"#22304F"},{v:"Burgundy", c:"#5E1F2A"},{v:"Bottle green", c:"#1F3B2E"},{v:"Silver grey", c:"#A7A9AD"},{v:"Black", c:"#141414"}]
@@ -841,14 +1055,14 @@ const OPTIONS = {
 const SUITS = [
   {v:"two", name:"The Two-Piece", price:"From $999", bg:"#1C2333", d:"Jacket and trousers. The suit for the office, weddings and everything in between.", li:["Single or double-breasted","Over a dozen lapel styles","Half-canvas construction"]},
   {v:"three", name:"The Three-Piece", price:"From $1,149", bg:"repeating-linear-gradient(90deg,#34363A 0 22px,#5A5D63 22px 23px)", d:"Adds a matching waistcoat. Wear it full, or drop the jacket and keep it sharp.", li:["Five or six-button waistcoat","Matching back or lining back","Half-canvas construction"]},
-  {v:"jacket", name:"The Jacket", price:"From $749", bg:"linear-gradient(180deg,#1C2333 0 62%,#4A5E78 62%)", extra:'<span class="vf"></span><span class="tag">● IN FRAME</span>', wfh:"The work-from-home edition.", d:"Tailored for the part of you the camera sees. Impeccable from the desk up, with no questions asked about the rest.", li:["Cut to your measurements","Pairs with trousers, chinos or the jeans nobody will see","Half-canvas construction"]},
-  {v:"trousers", name:"The Offline Trouser", price:"From $349", bg:"linear-gradient(180deg,#D9D6CE 0 36%,#1C2333 36%)", extra:'<span class="cl"></span><span class="tag dark">○ CAMERA OFF</span>', wfh:"For everything below the camera line.", d:"Cut to your measurements and finished like the rest of the suit, for the half of the meeting that never makes the screen.", li:["Cut to your measurements","Flat front or pleated, belt loops or side adjusters","Pairs with any jacket, or a very good knit"]}
+  {v:"jacket", name:"The Jacket", price:"From $749", bg:"linear-gradient(180deg,#1C2333 0 62%,#4A5E78 62%)", extra:'<span class="vf"></span><span class="tag">● IN FRAME</span>', wfh:"The work-from-home edition.", d:"A tailored jacket on its own. Wear it with trousers, chinos or denim, at the office or on camera.", li:["Cut to your measurements","Pairs with trousers, chinos or denim","Half-canvas construction"]},
+  {v:"trousers", name:"The Offline Trouser", price:"From $349", bg:"linear-gradient(180deg,#D9D6CE 0 36%,#1C2333 36%)", extra:'<span class="cl"></span><span class="tag dark">○ CAMERA OFF</span>', wfh:"For everything below the camera line.", d:"Cut to your measurements and finished like the rest of the suit. Wear them with a jacket you already own, or a good knit.", li:["Cut to your measurements","Flat front or pleated, belt loops or side adjusters","Pairs with any jacket or knit"]}
 ];
 
 /* ---------- Static renders ---------- */
 const card = s => `
   <article class="suit">
-    <div class="sw twill" style="background:${s.bg}">${s.extra||""}</div>
+    ${PHOTOS[s.v] ? `<div class="sw photo"><img src="${PHOTOS[s.v]}" alt="${s.name}" loading="lazy"></div>` : `<div class="sw twill" style="background:${s.bg}">${s.extra||""}</div>`}
     <div class="body"><h3>${s.name}</h3>${s.wfh?`<p class="wfh">${s.wfh}</p>`:""}<p class="price">${s.price}</p><p>${s.d}</p><ul>${s.li.map(l=>`<li>${l}</li>`).join("")}</ul></div>
     <a class="btn go" href="#build" data-pick="${s.v}">Start with this</a>
   </article>`;
@@ -1363,7 +1577,7 @@ function buildOptions(){
       const id = `o-${name}-${i}`;
       const inner = isSw
         ? `<span class="chip ${name==="cloth"?"twill":""}" style="background:${o.c}"></span><span class="nm">${o.v}</span>`
-        : `${THUMBS[name]?`<span class="thumb" data-t="${name}" data-v="${o.v}"></span>`:""}${o.t||o.v}${o.s?`<small>${o.s}</small>`:""}`;
+        : `${THUMBS[name]?`<span class="thumb" data-t="${name}" data-v="${o.v}"></span>`:""}${o.t||o.v}${o.s?`<small>${o.s}</small>`:""}${o.pop?`<small class="pop">MOST POPULAR</small>`:""}`;
       return `<div class="opt ${isSw?"swatch":""}"><input type="radio" name="${name}" id="${id}" value="${o.v}"><label for="${id}">${inner}</label></div>`;
     }).join("");
   });
@@ -1630,6 +1844,7 @@ function route(){
   $$("[data-nav]").forEach(a => a.dataset.nav === name ? a.setAttribute("aria-current","page") : a.removeAttribute("aria-current"));
   $(`.tabs a[data-nav="${name}"]`)?.scrollIntoView({block:"nearest", inline:"center"});
   document.activeElement?.blur?.();
+  $(".nav").classList.remove("open"); $("#menubtn").setAttribute("aria-expanded","false");
   const navH = $(".nav").offsetHeight;
   requestAnimationFrame(() => {
     if(!target || target === page) window.scrollTo({top:0, behavior: changed ? "instant" : "smooth"});
@@ -1655,7 +1870,115 @@ document.addEventListener("click", e => {
   o += `<path class="d" d="M262 38V298"/><path class="t" d="M256 38H268M256 298H268"/><text class="lbl" transform="translate(276 170) rotate(90)" text-anchor="middle">LENGTH 76</text>`;
   $("#hero-svg").innerHTML = o;
 })();
-buildOptions(); syncRules(); render(); buildFields(); route();
+buildOptions(); syncRules(); render(); buildFields();
+/* ---------- Customer-first additions ---------- */
+$("#menubtn").addEventListener("click", () => {
+  const open = $(".nav").classList.toggle("open");
+  $("#menubtn").setAttribute("aria-expanded", open ? "true" : "false");
+  $("#menubtn").textContent = open ? "Close" : "Menu";
+});
+window.addEventListener("hashchange", () => { $("#menubtn").textContent = "Menu"; });
+
+// Fit Promise
+const promiseItems = [
+  `<b>Try it on at home.</b> Wear it for an evening and check it against the fit guide we send with it.`,
+  `<b>Tell us within ${PROMISE.days} days</b> if anything feels off, with a few photos.`,
+  `<b>We fix it.</b> We pay for alterations with a tailor near you, up to ${PROMISE.alter}.`,
+  `<b>Or we remake it,</b> free, if alterations can't get it right.`,
+  `<b>We update your pattern,</b> so your next order fits first time.`
+];
+["#promise-list", "#promise-list-2"].forEach(sel => { const el = $(sel); if(el) el.innerHTML = promiseItems.map(i => `<li>${i}</li>`).join(""); });
+$$("[data-p]").forEach(el => el.textContent = PROMISE[el.dataset.p]);
+
+// Reviews (hidden until real ones are added)
+if(REVIEWS.length){
+  $("#review-list").innerHTML = REVIEWS.map(r => `<figure>${r.photo ? `<img src="${r.photo}" alt="${r.name} in his Montier suit" loading="lazy">` : ""}<blockquote>“${r.quote}”</blockquote><figcaption>${r.name}${r.detail ? " · " + r.detail : ""}</figcaption></figure>`).join("");
+  $("[data-reviews-wrap]").hidden = false;
+}
+
+// Business details
+if(CONTACT.abn) $("#abn").textContent = " · ABN " + CONTACT.abn;
+if(CONTACT.instagram) $("footer nav").insertAdjacentHTML("beforeend", `<a href="${CONTACT.instagram}" target="_blank" rel="noopener">Instagram</a>`);
+$("#where-person").textContent = BUSINESS.fittingCity ? `In person in ${BUSINESS.fittingCity}.` : "In person in selected cities. Ask us about yours.";
+if(BUSINESS.madeIn){
+  $("#workshop-where").textContent = " in " + BUSINESS.madeIn;
+  $("#made-where").textContent = BUSINESS.madeIn;
+  $("[data-made]").hidden = false; $("[data-made-line]").hidden = false;
+}
+if(BUSINESS.groupOffer) $("#group-offer").textContent = BUSINESS.groupOffer;
+
+// Founder
+if(FOUNDER.name){
+  $("#founder-name").textContent = FOUNDER.name;
+  $("#founder-story").innerHTML = FOUNDER.story.map(p => `<p></p>`).join("");
+  $$("#founder-story p").forEach((p, i) => p.textContent = FOUNDER.story[i]);
+  if(FOUNDER.photo){ $("#founder-photo").src = FOUNDER.photo; $("#founder-photo").alt = FOUNDER.name; $("#founder-photo").hidden = false; }
+  else $("#founder").style.gridTemplateColumns = "1fr";
+  $("#founder").hidden = false;
+}
+
+// Starter looks
+const LOOKS = [
+  {n:"The Office Navy", d:"Navy wool, notch lapel, two buttons. The one suit every man should own.",
+   s:{type:"two", material:"Wool", cloth:"Midnight navy", grade:"Super 110s wool", lapel:"Notch", front:"Two Button", pockets:"Flap Pockets", vents:"Double", lining:"Navy", hole:"Plain"}},
+  {n:"The Groom", d:"Three-piece in fine wool, peak lapel, a lining in your wedding colour.",
+   s:{type:"three", material:"Wool", cloth:"Midnight navy", grade:"Super 130s fine wool", lapel:"Peak", front:"One Button", pockets:"Jetted Pockets", vents:"Double", lining:"Burgundy", hole:"Milanese"}},
+  {n:"The Summer Linen", d:"Cool, relaxed linen with patch pockets. For outdoor weddings and warm days.",
+   s:{type:"two", material:"Linen", cloth:"Tobacco brown", lapel:"Notch", front:"Two Button", pockets:"Patch Pockets", chest:"Patch", vents:"Double", lining:"Navy", hole:"Plain", trouser:"Single pleat"}},
+  {n:"The Black Tie", d:"Black fine wool, shawl lapel, one button and side adjusters.",
+   s:{type:"two", material:"Wool", cloth:"Black", grade:"Super 130s fine wool", lapel:"Shawl", front:"One Button", pockets:"Jetted Pockets", vents:"Double", lining:"Black", hole:"None", waist:"Side adjusters"}}
+];
+const chipOf = v => (OPTIONS.cloth.find(c => c.v === v) || {}).c;
+const linOf = v => (OPTIONS.lining.find(c => c.v === v) || {}).c;
+$("#looks").innerHTML = LOOKS.map((l, i) => `<button type="button" class="look" data-look="${i}" aria-pressed="false">
+  <span class="chips"><span class="twill" style="background:${chipOf(l.s.cloth)}"></span><span style="background:${linOf(l.s.lining)}"></span></span>
+  <b>${l.n}</b><small>${l.d}</small></button>`).join("");
+$("#looks").addEventListener("click", e => {
+  const b = e.target.closest("[data-look]"); if(!b) return;
+  Object.assign(state, DEFAULTS, {mono: state.mono}, LOOKS[b.dataset.look].s);
+  $$("#looks .look").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+  syncRules(); render(); toast(LOOKS[b.dataset.look].n + " loaded. Change anything you like.");
+});
+
+// Lapels: show the common styles first
+(() => {
+  const box = $('#cfg [data-name="lapel"]'), core = ["Notch","Peak","Shawl","Tailor's Choice"];
+  $$('#cfg [data-name="lapel"] .opt').forEach(o => { if(!core.includes(o.querySelector("input").value)) o.classList.add("adv"); });
+  const more = $$('#cfg [data-name="lapel"] .opt.adv').length;
+  box.insertAdjacentHTML("beforeend", `<button type="button" class="moreopts" id="lapel-more" aria-expanded="false">+ ${more} more lapel styles</button>`);
+  $("#lapel-more").addEventListener("click", e => {
+    const on = box.classList.toggle("showadv");
+    e.target.setAttribute("aria-expanded", on ? "true" : "false");
+    e.target.textContent = on ? "Show fewer styles" : `+ ${more} more lapel styles`;
+    drawPreviews();
+  });
+})();
+
+// Swatches by post
+$("#sw-pick").innerHTML = OPTIONS.cloth.map((c, i) => `<div class="opt"><input type="checkbox" id="sw-${i}" value="${c.v}"><label for="sw-${i}">${c.v}</label></div>`).join("");
+$("#sw-pick").addEventListener("change", e => {
+  const on = $$("#sw-pick input:checked");
+  if(on.length > 4){ e.target.checked = false; toast("Up to four swatches, please."); }
+  $("#sw-count").textContent = `${Math.min(on.length,4)} of 4 chosen.`;
+});
+$("#swatches").addEventListener("submit", e => {
+  e.preventDefault();
+  if(!check(e.target)) return;
+  const picks = $$("#sw-pick input:checked").map(i => i.value);
+  if(!picks.length){ toast("Choose at least one colour."); return; }
+  const v = id => $("#"+id).value.trim();
+  openSend(`Swatch request: ${v("sw-name")}`, `Hi Montier,\n\nPlease post me these free swatches:\n${picks.map(p => "  - " + p).join("\n")}\n\nNAME: ${v("sw-name")}\nEMAIL: ${v("sw-email")}\nPOSTAL ADDRESS:\n${v("sw-addr")}\n`);
+});
+
+// Other ways to measure
+$("#alt-post").addEventListener("click", () => openSend("Measuring from a suit I own", `Hi Montier,\n\nI'd like to send you a jacket and trousers that fit me well, so you can take my measurements from them. How do I post them to you?\n\n${suitText()}\n\nNAME:\nSUBURB:\n`));
+$("#alt-reorder").addEventListener("click", () => openSend("Reorder with my saved pattern", `Hi Montier,\n\nI've ordered before. Please make this suit from my saved pattern:\n\n${suitText()}\n\nNAME:\nANY CHANGES SINCE MY LAST ORDER (weight, fit):\n`));
+document.addEventListener("click", e => {
+  const a = e.target.closest("[data-ftype]"); if(!a) return;
+  const r = $$('input[name="ftype"]').find(i => i.value === a.dataset.ftype); if(r) r.checked = true;
+});
+
+route();
 </script>
 
 </body></html>
